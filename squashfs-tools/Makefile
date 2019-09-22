@@ -15,7 +15,7 @@
 # Obviously, you must select at least one of the available gzip, lzma, lzo
 # compression types.
 #
-GZIP_SUPPORT = 1
+#GZIP_SUPPORT = 1
 
 ########### Building XZ support #############
 #
@@ -76,7 +76,7 @@ GZIP_SUPPORT = 1
 # To build install the library and uncomment
 # the ZSTD_SUPPORT line below.
 #
-#ZSTD_SUPPORT = 1
+ZSTD_SUPPORT = 1
 
 
 ######## Specifying default compression ########
@@ -85,7 +85,7 @@ GZIP_SUPPORT = 1
 # in Mksquashfs.  Obviously the compression algorithm must have been
 # selected to be built
 #
-COMP_DEFAULT = gzip
+COMP_DEFAULT = zstd
 
 
 ###############################################
