@@ -17,6 +17,9 @@
  * Support for ZSTD compression http://zstd.net
  */
 
+// Required for rsyncable parameter
+#define ZSTD_STATIC_LINKING_ONLY
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -189,6 +192,14 @@ static int zstd_init(void **strm, int block_size, int datablock)
 	if (!cctx) {
 		fprintf(stderr, "zstd: failed to allocate compression "
 			"context!\n");
+		return -1;
+	}
+
+	const size_t res = ZSTD_CCtx_setParameter(cctx, ZSTD_c_rsyncable, 1);
+	if (ZSTD_isError(res)) {
+		ZSTD_freeCCtx(cctx);
+		fprintf(stderr, "zstd: failed to set rsyncable parameter: %s",
+				ZSTD_getErrorName(res));
 		return -1;
 	}
 
