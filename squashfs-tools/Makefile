@@ -218,7 +218,7 @@ ifeq ($(ZSTD_SUPPORT),1)
 CFLAGS += -DZSTD_SUPPORT
 MKSQUASHFS_OBJS += zstd_wrapper.o
 UNSQUASHFS_OBJS += zstd_wrapper.o
-LIBS += -lzstd
+LIBS += -l:libzstd.a
 COMPRESSORS += zstd
 endif
 
