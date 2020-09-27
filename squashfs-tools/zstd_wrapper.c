@@ -195,16 +195,6 @@ static int zstd_init(void **strm, int block_size, int datablock)
 		return -1;
 	}
 
-	size_t res = 0;
-	res |= ZSTD_CCtx_setParameter(cctx, ZSTD_c_nbWorkers, 2);
-	res |= ZSTD_CCtx_setParameter(cctx, ZSTD_c_rsyncable, 1);
-	if (ZSTD_isError(res)) {
-		ZSTD_freeCCtx(cctx);
-		fprintf(stderr, "zstd: failed to set rsyncable parameter: %s\n",
-				ZSTD_getErrorName(res));
-		return -1;
-	}
-
 	*strm = cctx;
 	return 0;
 }
